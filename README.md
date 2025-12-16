@@ -1,40 +1,64 @@
 # 🏥 Medical AI Projects
 
-> Advancing healthcare through artificial intelligence - ECG analysis, dementia detection, and beyond
+> Advancing healthcare through artificial intelligence - ECG analysis, dementia detection, adverse drug reaction classification, and beyond
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Kritanucoder/MedicalAIProjects/issues)
 
-A collection of cutting-edge AI implementations for medical diagnostics, focusing on cardiovascular health and neurological conditions. These projects leverage deep learning and large language models to transform healthcare delivery.
+A collection of cutting-edge AI implementations for medical diagnostics and clinical NLP, focusing on cardiovascular health, neurological conditions, and pharmacovigilance. These projects leverage deep learning, reinforcement learning, and large language models to transform healthcare delivery.
 
 ---
 
 ## 📚 Projects
 
-### 1️⃣ [LLM-Based ECG Generator](./LLM_based_ECG_Generator.ipynb)
+### 1️⃣ SAC-Guided Adverse Drug Reaction Classification
+
+**Reinforcement learning-powered pipeline for automated ADR detection in medical text**
+
+- 🎯 **Purpose**: Classify adverse drug reactions from clinical narratives and patient reports using state-of-the-art NLP models optimized with Soft Actor-Critic (SAC) reinforcement learning
+- 🧠 **Technology**: BERT, Multi-GRU, PubMedBERT, BioBERT, ClinicalBERT with SAC-based fine-tuning
+- 📊 **Features**:
+  - Multi-model benchmarking across 5 transformer architectures
+  - RL-optimized model selection and hyperparameter tuning
+  - BERT achieves best performance with 1.6% improvement over baseline
+  - End-to-end pipeline from raw text to classification
+- 💡 **Use Cases**: Pharmacovigilance, clinical decision support, drug safety monitoring, automated medical record analysis
+
+[📓 View Notebook](https://github.com/Kritanucoder/MedicalAIProjects/blob/main/SAC_Guided_ADR_Classification.ipynb)
+
+---
+
+### 2️⃣ LLM-Based ECG Generator
 
 **Generate synthetic electrocardiogram signals using Large Language Models**
 
 - 🎯 **Purpose**: Create realistic ECG waveforms for training ML models and research
-- 🧠 **Technology**: LLM-powered synthesis with customizable parameters
+- 🧠 **Technology**: LLM-powered synthesis (MiniLLaMA) with customizable parameters
 - 📊 **Features**:
   - Synthetic ECG generation with variable morphology
   - Controllable heart rate and rhythm patterns
   - Data augmentation for medical AI training
 - 💡 **Use Cases**: Medical education, algorithm testing, dataset expansion
 
-### 2️⃣ [AI-Based Dementia Detector](./AI_based_Dementia_Detector.ipynb)
+[📓 View Notebook](https://github.com/Kritanucoder/MedicalAIProjects/blob/main/LLM_based_ECG_Generator.ipynb)
 
-**Early detection of dementia using AI-powered EEG/signal analysis**
+---
 
-- 🎯 **Purpose**: Identify cognitive decline patterns through brain signal analysis
-- 🧠 **Technology**: Deep learning models (CNN/LSTM architectures)
+### 3️⃣ AI-Based Dementia Detector
+
+**Early detection of dementia using AI-powered risk prediction and analysis**
+
+- 🎯 **Purpose**: Identify cognitive decline patterns and predict dementia risk
+- 🧠 **Technology**: Classical ML ensemble (XGBoost, LightGBM, CatBoost, RandomForest, SVC, LogisticRegression, KNN)
 - 📊 **Features**:
-  - Classification of Alzheimer's Disease (AD) and Frontotemporal Dementia (FTD)
-  - Disease severity prediction
-  - High accuracy (>90%) in early detection
-- 💡 **Use Cases**: Clinical screening, research, early intervention planning
+  - Multi-model ensemble with cross-validation
+  - Interactive Gradio interface for real-time predictions
+  - Comprehensive preprocessing and feature engineering pipeline
+  - High accuracy risk assessment
+- 💡 **Use Cases**: Clinical screening, research, early intervention planning, decision support
+
+[📓 View Notebook](https://github.com/Kritanucoder/MedicalAIProjects/blob/main/AI_based_Dementia_Detector.ipynb)
 
 ---
 
@@ -43,7 +67,7 @@ A collection of cutting-edge AI implementations for medical diagnostics, focusin
 ### Prerequisites
 
 ```bash
-pip install numpy pandas matplotlib scikit-learn tensorflow torch jupyter
+pip install numpy pandas matplotlib scikit-learn tensorflow torch jupyter transformers huggingface-hub gradio
 ```
 
 ### Quick Start
@@ -59,6 +83,19 @@ cd MedicalAIProjects
 jupyter notebook
 ```
 
+### Running Individual Projects
+
+```bash
+# For SAC-Guided ADR Classification
+jupyter notebook SAC_Guided_ADR_Classification.ipynb
+
+# For LLM-Based ECG Generator
+jupyter notebook LLM_based_ECG_Generator.ipynb
+
+# For AI-Based Dementia Detector
+jupyter notebook AI_based_Dementia_Detector.ipynb
+```
+
 ---
 
 ## 🔬 Technical Stack
@@ -66,17 +103,20 @@ jupyter notebook
 | Component | Technology |
 |-----------|-----------|
 | **Deep Learning** | TensorFlow, PyTorch |
+| **NLP/Transformers** | BERT, BioBERT, ClinicalBERT, PubMedBERT, Hugging Face |
+| **Reinforcement Learning** | Soft Actor-Critic (SAC), Stable-Baselines3 |
+| **Classical ML** | XGBoost, LightGBM, CatBoost, Scikit-learn |
 | **Data Processing** | NumPy, Pandas |
 | **Visualization** | Matplotlib, Seaborn |
-| **Medical Imaging** | OpenCV, PIL |
-| **NLP/LLM** | Transformers, Hugging Face |
+| **Deployment** | Gradio |
 
 ---
 
 ## 📊 Performance Highlights
 
+- **SAC-Guided ADR Classification**: BERT achieves best performance with 1.6% improvement through RL-optimized fine-tuning
 - **ECG Generator**: Produces clinically realistic waveforms with customizable parameters
-- **Dementia Detector**: Achieves 90%+ accuracy in distinguishing between healthy and dementia patients
+- **Dementia Detector**: Robust ensemble approach with interactive deployment interface
 - **Real-time Analysis**: Fast inference suitable for clinical deployment
 
 ---
@@ -84,22 +124,33 @@ jupyter notebook
 ## 🤝 Contributing
 
 Contributions are welcome! Whether it's:
+
 - 🐛 Bug fixes
 - ✨ New features
 - 📝 Documentation improvements
 - 🧪 Additional medical AI models
 
-Please feel free to open issues or submit pull requests.
+### How to Contribute
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
 ## 📖 Research & Citations
 
 These projects are built upon state-of-the-art research in:
+
+- Transformer-based models for medical NLP and clinical text analysis
+- Reinforcement learning for model optimization
 - Convolutional Neural Networks for medical signal processing
 - Attention-based models for time-series analysis
 - Generative models for synthetic medical data
-- AI-powered early disease detection
+- Ensemble methods for robust prediction
+- AI-powered early disease detection and pharmacovigilance
 
 ---
 
@@ -107,13 +158,13 @@ These projects are built upon state-of-the-art research in:
 
 **For Research and Educational Purposes Only**
 
-These tools are designed for research, education, and algorithm development. They are NOT intended for clinical diagnosis or treatment decisions. Always consult qualified healthcare professionals for medical advice.
+These tools are designed for research, education, and algorithm development. They are **NOT** intended for clinical diagnosis or treatment decisions. Always consult qualified healthcare professionals for medical advice.
 
 ---
 
 ## 📧 Contact
 
-**Kritanu** - [@Kritanucoder](https://github.com/Kritanucoder)
+**Kritanu Chattopadhyay** - [@Kritanucoder](https://github.com/Kritanucoder)
 
 Project Link: [https://github.com/Kritanucoder/MedicalAIProjects](https://github.com/Kritanucoder/MedicalAIProjects)
 
@@ -125,10 +176,18 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+## 🌟 Acknowledgments
+
+- Medical datasets and benchmarks from the research community
+- Open-source libraries and frameworks that made this work possible
+- Healthcare professionals for domain expertise and validation
+
+---
+
 <div align="center">
 
-**⭐ Star this repo if you find it helpful!**
+⭐ **Star this repo if you find it helpful!**
 
-Made with ❤️ for advancing healthcare through AI
+*Made with ❤️ for advancing healthcare through AI*
 
 </div>
